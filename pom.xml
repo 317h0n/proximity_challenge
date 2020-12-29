@@ -15,7 +15,8 @@
 	<description>Expendedoras</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>11</java.version>		
+		<springfox.version>2.4.0</springfox.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +44,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
 		</dependency>
 	</dependencies>
 

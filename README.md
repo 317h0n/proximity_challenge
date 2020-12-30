@@ -26,3 +26,24 @@ You need to have JDK 11 installed, you can use a H2 database for development pro
 
 - There is a live demo in Heroku: https://proximity-test-vendingmachine.herokuapp.com
 - You can read the documentation of the Api on: https://proximity-test-vendingmachine.herokuapp.com/swagger-ui.html
+
+## Testing
+
+You can use the postman collection of this project to test the API in Heroku.
+
+## Built With
+
+* [Spirng Boot](https://spring.io/projects/spring-boot) - The java web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Elthon Chocano** - *Initial work* - (https://www.elthonchocano.me/)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

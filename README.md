@@ -20,7 +20,7 @@ You need to have JDK 11 installed, you can use a H2 database for development pro
 ### Installing
 
 - You need to clone this repo and open it in a STS 4 or any IDE that you prefer.
-- You need a Postman or another tool for testing Apis.
+- You need a Postman or another tool for testing Apis, there is a collection with all of the methods that you can test.
 
 ## Running on the web
 

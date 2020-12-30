@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "71957785-1814-40f1-a980-35108c7e4252",
+		"name": "Proximity - Java Challenge - Vending Machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "Pay a sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "formaPago",
+									"value": "T",
+									"type": "text"
+								},
+								{
+									"key": "pago",
+									"value": "2,2,2,2,2",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ventas/4/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas",
+								"4",
+								"pay"
+							]
+						},
+						"description": "It is for paying a sale"
+					},
+					"response": []
+				},
+				{
+					"name": "List all of the sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/ventas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show a sale",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/ventas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas",
+								"1"
+							]
+						},
+						"description": "It's for see a sale by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"expendedora\": {\n        \"id\": 1\n    },\n    \"items\": [\n        {\n            \"cantidad\": 4,\n            \"item\": {\n                \"id\": 1                    \n            }\n        }\n    ],\n    \"formaPago\": \"E\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ventas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas"
+							]
+						},
+						"description": "It's for adding sales"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vending Machine",
+			"item": [
+				{
+					"name": "Withdraw money",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expendedoraId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tecnicoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/expendedoras/withdraw",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"expendedoras",
+								"withdraw"
+							]
+						},
+						"description": "It's for collecting money from the vending machine"
+					},
+					"response": []
+				},
+				{
+					"name": "List all of the vending machines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/expendedoras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"expendedoras"
+							]
+						},
+						"description": "It's for seeing all of the vending machines"
+					},
+					"response": []
+				},
+				{
+					"name": "Show a vending machine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/expendedoras/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"expendedoras",
+								"1"
+							]
+						},
+						"description": "It's for seeing one vending machine"
+					},
+					"response": []
+				},
+				{
+					"name": "Show all the vending machines by sales and date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/expendedoras/sales/2020-12-28",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"expendedoras",
+								"sales",
+								"2020-12-28"
+							]
+						},
+						"description": "Show all the vending machines that have sales in that date"
+					},
+					"response": []
+				},
+				{
+					"name": "Show all the vending machines by withdraws and date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/expendedoras/withdraw/2020-12-29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"expendedoras",
+								"withdraw",
+								"2020-12-29"
+							]
+						},
+						"description": "Show all the vending machines that have withdraws in that date"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Get all items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items"
+							]
+						},
+						"description": "It's for seeing all the items"
+					},
+					"response": []
+				},
+				{
+					"name": "Get one item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"1"
+							]
+						},
+						"description": "It's for showing one item by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Search items by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/search/cho",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"search",
+								"cho"
+							]
+						},
+						"description": "Show all the items that have a word in their name"
+					},
+					"response": []
+				},
+				{
+					"name": "Save a item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"S0002\",\n    \"nombre\": \"Totees\",\n    \"descripcion\": \"Bolsa de snack de trigo salados, bolsa de 100g\",\n    \"precio\": 1.8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items"
+							]
+						},
+						"description": "It's for creating a item"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"S0002\",\n    \"nombre\": \"Totees\",\n    \"descripcion\": \"Bolsa de snack de trigo, bolsa de 100g\",\n    \"precio\": 1.8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/items/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"3"
+							]
+						},
+						"description": "To update all of the item"
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update a item",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Bolsa de snack de trigo salado, bolsa de 100g\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/items/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"3"
+							]
+						},
+						"description": "It's for updating some properties of the item"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"3"
+							]
+						},
+						"description": "For deleting a item by ID"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

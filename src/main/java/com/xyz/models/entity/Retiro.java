@@ -2,11 +2,7 @@ package com.xyz.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,7 +20,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.xyz.common.Util;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -35,12 +29,12 @@ import io.swagger.annotations.ApiModelProperty;
 //@JsonIdentityInfo(
 //		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 //		  property = "id")
-@Table(name = "ventas")
-@ApiModel("Model Venta")
-public class Venta implements Serializable {
+@Table(name = "retiros")
+@ApiModel("Model Retiro")
+public class Retiro implements Serializable {
 
-	private static final long serialVersionUID = 1688285570337516302L;
-	
+	private static final long serialVersionUID = -4630239900435167595L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(value = "Id of the model", required = true)
@@ -49,7 +43,7 @@ public class Venta implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	@ApiModelProperty(value = "Date of the sale", required = true)
+	@ApiModelProperty(value = "Date of the withdraw", required = true)
 	private Date fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -57,25 +51,21 @@ public class Venta implements Serializable {
 	@ApiModelProperty(value = "Expendedora Model", required = true)
 	private Expendedora expendedora;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "venta_id")
-	@ApiModelProperty(value = "Items of the sale", required = true)
-	private Set<VentaItem> items;
+	@ApiModelProperty(value = "Value of the withdraw", required = true)
+	private Double monto;
 	
-	@ApiModelProperty(value = "Pay method of the sale", required = true)
-	@Column(name = "forma_pago")
-	private String formaPago;
-	
-	@ApiModelProperty(value = "To see if the sale was paid", required = true)
-	private boolean pagada;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="tecnico_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ApiModelProperty(value = "Tecnico of the withdraw", required = true)
+	private Tecnico tecnico;
 	
 	@PrePersist
 	public void prePersist() {
 		fecha = new Date();
 	}
 
-	public Venta() {
-		this.items = new LinkedHashSet<>();
+	public Retiro() {
 	}
 
 	public Long getId() {
@@ -94,26 +84,6 @@ public class Venta implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Set<VentaItem> getItems() {
-		return items;
-	}
-
-	public void setItems(Set<VentaItem> items) {
-		this.items = items;
-	}
-	
-	public void addVentaItem(VentaItem item) {
-		this.items.add(item);
-	}
-
-	public Double getTotal() {
-		Double total = 0.0;
-		for (VentaItem ventaItem : items) {
-			total += ventaItem.calcularImporte();
-		}
-		return Util.round(total, 2);
-	}
-
 	public Expendedora getExpendedora() {
 		return expendedora;
 	}
@@ -122,19 +92,19 @@ public class Venta implements Serializable {
 		this.expendedora = expendedora;
 	}
 
-	public String getFormaPago() {
-		return formaPago;
+	public Double getMonto() {
+		return monto;
 	}
 
-	public void setFormaPago(String formaPago) {
-		this.formaPago = formaPago;
+	public void setMonto(Double monto) {
+		this.monto = monto;
 	}
 
-	public boolean isPagada() {
-		return pagada;
+	public Tecnico getTecnico() {
+		return tecnico;
 	}
 
-	public void setPagada(boolean pagada) {
-		this.pagada = pagada;
+	public void setTecnico(Tecnico tecnico) {
+		this.tecnico = tecnico;
 	}
 }

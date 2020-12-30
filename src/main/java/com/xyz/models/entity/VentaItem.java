@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.xyz.common.Util;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -67,6 +68,6 @@ public class VentaItem implements Serializable {
 	}
 
 	public Double calcularImporte() {
-		return cantidad.doubleValue() * item.getPrecio();
+		return Util.round(cantidad.doubleValue() * item.getPrecio(), 2);
 	}
 }

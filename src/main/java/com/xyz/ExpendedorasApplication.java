@@ -9,5 +9,4 @@ public class ExpendedorasApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ExpendedorasApplication.class, args);
 	}
-
 }
